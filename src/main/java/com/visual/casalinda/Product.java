@@ -1,11 +1,27 @@
 package com.visual.casalinda;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Product {
+
     private String name;
-    private String id;
+    private String code;
     private String description;
     private int quantity;
+
     private String category;
+
+    public static List<Product> productList = new ArrayList<>();
+
+    public Product(String productName, String productCode, String productDescription, String productQuantity, String productCategory) {
+        this.name = productName;
+        this.code = productCode;
+        this.description = productDescription;
+        this.quantity = Integer.parseInt(productQuantity);
+        this.category = productCategory;
+        productList.add(this);
+    }
 
     public String getName() {
         return name;
@@ -16,11 +32,11 @@ public class Product {
     }
 
     public String getId() {
-        return id;
+        return code;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getDescription() {
@@ -35,8 +51,12 @@ public class Product {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setQuantity(int quantity) { //abrir janela q n é possivel ter quantidade negativa na segunda tela
+
+        if (this.quantity < 0) {
+           System.out.println("Nao eh possiver ter quantidade negativa");
+        }
+        this.quantity += quantity;
     }
 
     public String getCategory() {
@@ -47,5 +67,16 @@ public class Product {
         this.category = category;
     }
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", code='" + code + '\'' +
+                ", description='" + description + '\'' +
+                ", quantity=" + quantity +
+                ", category='" + category + '\'' +
+                '}';
+    }
 }
+
 
